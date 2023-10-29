@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <title>
+        Twitch Login in Progress... | TiendaGatito
+    </title>
+    <script src='/js/jquery-3.6.0-min.js'></script>
+    <script src='/js/common.js'></script>
+</head>
+
+<body>
+    <form method="POST" action="/internalCallback" id="form">
+        <input type="hidden" name="userInfo" id="userInfo">
+    </form>
+    <script>
+        hash = document.location.hash
+        hash = hash.substring(1)
+        hashArray = hash.split('&')
+        if (hashArray.length > 1) {
+            const responseObj = {
+                accessToken: hashArray[0].replace('access_token=', ''),
+                tokenType: hashArray[2].replace('token_type=', '')
+            }
+            $.get({
+                url: 'https://api.twitch.tv/helix/users',
+                headers: {
+                    'Authorization': 'Bearer ' + responseObj.accessToken,
+                    'Client-Id': 'pb8w32i9zo32mcn6m768qjpd3ic1vr'
+                },
+                dataType: 'json',
+                success: function(response) {
+                    userDetails = response.data[0]
+                    userDetails.accessToken = responseObj.accessToken
+                    $('#userInfo').val(JSON.stringify(userDetails))
+                    $('#form').submit()
+                }
+            })
+
+        } else {
+            document.location.href = "/internalCallback"
+        }
+    </script>
+</body>
+
+</html>

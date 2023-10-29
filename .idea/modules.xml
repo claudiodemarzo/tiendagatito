@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/tiendagatito.iml" filepath="$PROJECT_DIR$/tiendagatito.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tiendagatito-frontend.iml" filepath="$PROJECT_DIR$/tiendagatito-frontend.iml" />
+    </modules>
+  </component>
+</project>
